@@ -11,7 +11,7 @@ function LoginForm() {
 
   useEffect(() => {
     if (!error) return;
-    const id = setTimeout(() => {
+    setTimeout(() => {
       setError('');
     }, 4000);
   }, [error]);
@@ -23,11 +23,17 @@ function LoginForm() {
     try {
       setIsLoading(true);
       const data = await axios.post(
-        'http://127.0.0.1:3001/api/v1/users/login',
+        'http://127.0.0.1:3000/api/v1/users/login',
         credentials
       );
 
       console.log(data);
+
+      const data2 = await axios.get(
+        'http://127.0.0.1:3000/api/v1/project-requests'
+      );
+
+      console.log(data2);
     } catch (err) {
       console.log(err);
       setError(err.response.data.message);

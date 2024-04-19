@@ -19,7 +19,7 @@ function Works() {
         setError('');
 
         const res = await fetch(
-          'http://127.0.0.1:3001/api/v1/works/?sort=createdAt'
+          'http://127.0.0.1:3000/api/v1/works/?sort=createdAt'
         );
         const dataWorks = await res.json();
 
