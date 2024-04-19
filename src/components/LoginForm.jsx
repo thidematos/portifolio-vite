@@ -24,13 +24,17 @@ function LoginForm() {
       setIsLoading(true);
       const data = await axios.post(
         'http://127.0.0.1:3000/api/v1/users/login',
-        credentials
+        credentials,
+        {
+          withCredentials: true,
+        }
       );
 
       console.log(data);
 
       const data2 = await axios.get(
-        'http://127.0.0.1:3000/api/v1/project-requests'
+        'http://127.0.0.1:3000/api/v1/project-requests',
+        { withCredentials: true }
       );
 
       console.log(data2);
