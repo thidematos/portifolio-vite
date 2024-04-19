@@ -4,6 +4,7 @@ import Loader from './Loader';
 import Error from './Error';
 import { useNavigate } from 'react-router-dom';
 import Button from './Button';
+import ErrorNotification from './ErrorNotification';
 
 function LoginForm({ pathToAfterLogin }) {
   const [user, setUser] = useState('');
@@ -12,13 +13,6 @@ function LoginForm({ pathToAfterLogin }) {
   const [error, setError] = useState('');
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!error) return;
-    setTimeout(() => {
-      setError('');
-    }, 4000);
-  }, [error]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -40,7 +34,6 @@ function LoginForm({ pathToAfterLogin }) {
 
       navigate(pathToAfterLogin);
     } catch (err) {
-      console.log(err);
       setError(err.response.data.message);
     } finally {
       setIsLoading(false);
@@ -69,19 +62,28 @@ function LoginForm({ pathToAfterLogin }) {
             state={password}
             setter={setPassword}
           />
-          <Button onSubmit={handleSubmit} margin={'mt-6'} fontSize={'text-2xl'}>
+          <Button onAction={handleSubmit} margin={'mt-6'} fontSize={'text-2xl'}>
             LOGIN
           </Button>
         </form>
       )}
       {isLoading && <Loader width="w-[80%]" />}
-      {error && <ErrorNotification />}
+      {error && (
+        <ErrorNotification
+          bgColor={'bg-orange-500'}
+          fontSize={'text-lg'}
+          toUpperCase={true}
+          textColor={'text-gray-50'}
+          position={'bottom-6'}
+          width={'w-[80%]'}
+          error={error}
+          setError={setError}
+        >
+          {error}
+        </ErrorNotification>
+      )}
     </>
   );
-}
-
-function ErrorNotification() {
-  return <div className="absolute bottom-5">Ocorreu um erro man</div>;
 }
 
 function InputDiv({ type, label, labelId, icon, placeholder, state, setter }) {

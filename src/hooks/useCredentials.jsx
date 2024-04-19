@@ -19,7 +19,6 @@ export default function useCredentials() {
 
         setUser(response.data.data.user);
       } catch (err) {
-        console.log(err);
         setError(err.response.data.message);
       } finally {
         setIsLoading(false);
