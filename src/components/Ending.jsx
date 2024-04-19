@@ -2,6 +2,7 @@ import Modal from './Modal';
 import { useState } from 'react';
 import AboutMe from './AboutMe';
 import ProjectRequestForm from './ProjectRequestForm';
+import { Link } from 'react-router-dom';
 
 function Ending() {
   return (
@@ -97,36 +98,38 @@ function EndTile({
   };
 
   return (
-    <div
-      className="h-[150px] md:h-[160px] lg:h-[200px] drop-shadow-xl w-full md:w-[50%] rounded-lg flex flex-row justify-between items-center bg-gray-200 overflow-hidden lg:max-h-[150px] xl:max-h-[180px]"
-      onMouseOver={toggleHover}
-      onMouseOut={toggleHover}
-      onClick={() => onOpenModal(true)}
-    >
-      <div className="w-[50%] flex flex-col justify-center items-start p-4 xl:p-6 3xl:p-10 font-poppins gap-2">
-        <h6
-          className={`${
-            isHoveredTile ? 'text-blue-500' : 'text-gray-800'
-          } text-lg lg:text-sm xl:text-lg 2xl:text-xl 3xl:text-2xl  duration-200`}
-        >
-          {title}
-        </h6>
-        <p className="text-gray-500 text-sm lg:text-xs xl:text-sm 3xl:text-base">
-          {' '}
-          {subtitle}
-        </p>
-      </div>
+    <Link to="/codice-desvelado">
+      <div
+        className="h-[150px] md:h-[160px] lg:h-[200px] drop-shadow-xl w-full md:w-[50%] rounded-lg flex flex-row justify-between items-center bg-gray-200 overflow-hidden lg:max-h-[150px] xl:max-h-[180px]"
+        onMouseOver={toggleHover}
+        onMouseOut={toggleHover}
+        onClick={() => onOpenModal(true)}
+      >
+        <div className="w-[50%] flex flex-col justify-center items-start p-4 xl:p-6 3xl:p-10 font-poppins gap-2">
+          <h6
+            className={`${
+              isHoveredTile ? 'text-blue-500' : 'text-gray-800'
+            } text-lg lg:text-sm xl:text-lg 2xl:text-xl 3xl:text-2xl  duration-200`}
+          >
+            {title}
+          </h6>
+          <p className="text-gray-500 text-sm lg:text-xs xl:text-sm 3xl:text-base">
+            {' '}
+            {subtitle}
+          </p>
+        </div>
 
-      <div className=" w-[50%] overflow-hidden flex flex-row justify-end h-full">
-        <img
-          src={img}
-          alt=""
-          className={`${
-            isHoveredTile ? 'scale-125' : ''
-          }   duration-200 h-full rounded-r-lg ${imgWidth} sca`}
-        ></img>
+        <div className=" w-[50%] overflow-hidden flex flex-row justify-end h-full">
+          <img
+            src={img}
+            alt=""
+            className={`${
+              isHoveredTile ? 'scale-125' : ''
+            }   duration-200 h-full rounded-r-lg ${imgWidth} sca`}
+          ></img>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }
 

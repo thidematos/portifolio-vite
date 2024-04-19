@@ -6,7 +6,7 @@ function Error({ message }) {
   return (
     <div className="w-full h-full flex flex-col justify-center gap-14 items-center py-10 px-6 font-poppins">
       <p className="text-2xl text-gray-800">Ocorreu um erro...</p>
-      <img src="error.png" alt="" className="w-[60%]"></img>
+      <img src="/error.png" alt="" className="w-[60%]"></img>
       <div className="flex flex-col justify-center items-center w-full">
         <p className="text-gray-800 text-lg">Descrição do problema:</p>
         <p className="text-base text-gray-600 w-full">{message}</p>
