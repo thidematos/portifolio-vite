@@ -2,12 +2,16 @@ import axios from 'axios';
 import { useEffect, useReducer, useState } from 'react';
 import Loader from './Loader';
 import Error from './Error';
+import { useNavigate } from 'react-router-dom';
+import Button from './Button';
 
-function LoginForm() {
+function LoginForm({ pathToAfterLogin }) {
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!error) return;
@@ -30,14 +34,11 @@ function LoginForm() {
         }
       );
 
-      console.log(data);
+      if (!data.statusText === 'OK') {
+        throw new Error('Falha em autenticar o usuário.');
+      }
 
-      const data2 = await axios.get(
-        'http://127.0.0.1:3000/api/v1/project-requests',
-        { withCredentials: true }
-      );
-
-      console.log(data2);
+      navigate(pathToAfterLogin);
     } catch (err) {
       console.log(err);
       setError(err.response.data.message);
@@ -68,10 +69,12 @@ function LoginForm() {
             state={password}
             setter={setPassword}
           />
-          <Button onSubmit={handleSubmit} />
+          <Button onSubmit={handleSubmit} margin={'mt-6'} fontSize={'text-2xl'}>
+            LOGIN
+          </Button>
         </form>
       )}
-      {isLoading && <Loader />}
+      {isLoading && <Loader width="w-[80%]" />}
       {error && <ErrorNotification />}
     </>
   );
@@ -79,17 +82,6 @@ function LoginForm() {
 
 function ErrorNotification() {
   return <div className="absolute bottom-5">Ocorreu um erro man</div>;
-}
-
-function Button({ onSubmit }) {
-  return (
-    <button
-      className="font-poppins text-2xl px-6 py-3 text-gray-50 bg-blue-500 rounded-md shadow-lg drop-shadow-sm mt-6"
-      onClick={(e) => onSubmit(e)}
-    >
-      LOGIN
-    </button>
-  );
 }
 
 function InputDiv({ type, label, labelId, icon, placeholder, state, setter }) {
