@@ -4,6 +4,7 @@ import Portifolio from './pages/Portifolio';
 import CodiceDesvelado from './pages/CodiceDesvelado';
 import Admin from './pages/Admin';
 import Dashboard from './pages/Dashboard';
+import WorksPage from './pages/WorksPage';
 
 function App() {
   const isMobile = window.innerWidth < 640;
@@ -16,6 +17,7 @@ function App() {
           <Route path="admin" element={<Admin />} />
         </Route>
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard/works" element={<WorksPage />} />
       </Routes>
     </BrowserRouter>
   );

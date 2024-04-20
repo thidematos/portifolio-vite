@@ -9,7 +9,6 @@ function Button({ type = 'action', onAction, children, margin, fontSize }) {
 
   return (
     <button
-      type="button"
       className={`font-poppins ${fontSize} px-6 py-3 text-gray-50 bg-blue-500 rounded-md shadow-lg drop-shadow-sm ${margin}`}
       onClick={handleAction}
     >

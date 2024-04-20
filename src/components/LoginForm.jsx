@@ -67,7 +67,7 @@ function LoginForm({ pathToAfterLogin }) {
           </Button>
         </form>
       )}
-      {isLoading && <Loader width="w-[80%]" />}
+      {isLoading && <Loader width="w-[80%]" margin="mt-6" />}
       {error && (
         <ErrorNotification
           bgColor={'bg-orange-500'}

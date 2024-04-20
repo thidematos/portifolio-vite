@@ -6,6 +6,7 @@ import Benefits from './../components/Benefits';
 import WorkFlow from './../components/WorkFlow';
 import AskedQuestions from './../components/AskedQuestions';
 import Ending from './../components/Ending';
+import Footer from './../components/Footer';
 
 function Portifolio({ isMobile }) {
   return (
@@ -22,7 +23,12 @@ function Portifolio({ isMobile }) {
         <AskedQuestions />
         <Ending />
       </div>
-      <Footer />
+      <Footer
+        bgColor={'bg-slate-50'}
+        padding={'py-6'}
+        fontSize={'text-sm md:text-base lg:text-xs xl:text-sm 3xl:text-base'}
+        textColor={'text-gray-500'}
+      />
     </>
   );
 }
@@ -32,16 +38,6 @@ function WelcomePage({ children }) {
     <div className="w-screen flex flex-col md:justify-start lg:justify-evenly  items-center h-screen md:h-auto lg:h-screen">
       {children}
     </div>
-  );
-}
-
-function Footer() {
-  return (
-    <footer className="bg-slate-50 w-screen flex flex-row justify-center py-6">
-      <h4 className="text-sm md:text-base lg:text-xs xl:text-sm 3xl:text-base font-poppins text-gray-500">
-        ©️ 2024 Thiago L. Matos. All rights reserved.
-      </h4>
-    </footer>
   );
 }
 
