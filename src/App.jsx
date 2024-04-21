@@ -4,10 +4,10 @@ import Portifolio from './pages/Portifolio';
 import CodiceDesvelado from './pages/CodiceDesvelado';
 import Admin from './pages/Admin';
 import Dashboard from './pages/Dashboard';
-import WorksPage from './pages/WorksPage';
+import WorksPage from './components/WorksPage';
 import DashboardOverview from './components/DashboardOverview';
 import WorkDetails from './components/WorkDetails';
-import WorkEdit from './components/WorkEdit';
+import EditWork from './components/EditWork';
 
 function App() {
   const isMobile = window.innerWidth < 640;
@@ -23,8 +23,9 @@ function App() {
           <Route index element={<Navigate replace to={'overview'} />} />
           <Route path="overview" element={<DashboardOverview />} />
           <Route path="works" element={<WorksPage />} />
-          <Route path="works/:id" element={<WorkDetails />} />
-          <Route path="works/editar/:id" element={<WorkEdit />} />
+          <Route path="works/:id" element={<WorkDetails />}>
+            <Route path="editar" element={<EditWork />} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
