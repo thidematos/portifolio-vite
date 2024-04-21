@@ -8,7 +8,7 @@ const times = {
 
 function ErrorNotification({
   error,
-  setError,
+  setError = () => null,
   bgColor,
   fontSize,
   toUpperCase,

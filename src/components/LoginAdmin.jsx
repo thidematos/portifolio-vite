@@ -9,7 +9,7 @@ function LoginAdmin() {
         <h2 className="font-poppins text-gray-500 text-xl drop-shadow-md">
           Admin Dashboard
         </h2>
-        <LoginForm pathToAfterLogin={'/dashboard'} />
+        <LoginForm pathToAfterLogin={'/admin/dashboard/overview'} />
       </div>
     </div>
   );

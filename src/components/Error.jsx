@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Button from './Button';
 import { useNavigate } from 'react-router-dom';
 
-function Error({ message }) {
+function Error({ message, path }) {
   const [isHovered, setIsHovered] = useState(false);
 
   const navigate = useNavigate();
@@ -21,6 +21,7 @@ function Error({ message }) {
         fontSize={'text-xl'}
         margin={'mt-0'}
         onAction={navigate}
+        path={path}
       >
         &larr; Voltar
       </Button>

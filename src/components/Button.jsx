@@ -1,10 +1,17 @@
-function Button({ type = 'action', onAction, children, margin, fontSize }) {
+function Button({
+  type = 'action',
+  onAction,
+  children,
+  margin,
+  fontSize,
+  path = -1,
+}) {
   //type === 'action' || 'back'
 
   function handleAction(e) {
     if (type === 'action') return onAction(e);
 
-    if (type === 'back') return onAction(-1);
+    if (type === 'back') return onAction(path);
   }
 
   return (
