@@ -33,26 +33,27 @@ function WorkDetails() {
       {error && <Error message={error} />}
       {!isLoading && !error && (
         <>
-          <Outlet context={work} />
+          <Outlet context={[work, setWork]} />
           <Container>
             <Details />
             <EditArea>
               <Title
+                fieldName={'Título'}
                 title={work.title}
                 fontColor={'text-gray-700'}
-                fontSize={'text-2xl'}
+                fontSize={'text-lg'}
                 toUpperCase={true}
-                margin={'my-4'}
                 content={'title'}
               />
               <Title
+                fieldName={'Sub-título'}
                 title={work.subTitle}
                 fontColor={'text-gray-700'}
-                fontSize={'text-sm'}
+                fontSize={'text-lg'}
                 toUpperCase={true}
-                margin={'my-4'}
                 content={'subTitle'}
               />
+              <Image src={work.src} fieldName={'Capa'} content={'src'} />
             </EditArea>
           </Container>
         </>
@@ -69,9 +70,20 @@ function Container({ children }) {
   );
 }
 
+function Image({ src, fieldName, content }) {
+  return (
+    <Link to={`editar-img?field=${content}`}>
+      <div className="w-full flex flex-col justify-center items-center gap-5">
+        <Field>{fieldName}</Field>
+        <img src={`/${src}`} alt="" className="w-full" />
+      </div>
+    </Link>
+  );
+}
+
 function EditArea({ children }) {
   return (
-    <div className="bg-gray-200 w-full flex flex-col justify-center items-center">
+    <div className="py-10 w-full flex flex-col justify-center items-center gap-8">
       {children}
     </div>
   );
@@ -79,7 +91,7 @@ function EditArea({ children }) {
 
 function Details() {
   return (
-    <h5 className="w-full font-poppins text-center text-gray-400 pb-6">
+    <h5 className="w-full font-poppins text-center text-gray-400">
       Clique em alguma das opções para editar
     </h5>
   );
@@ -94,15 +106,27 @@ function Title({
   width,
   toUpperCase = false,
   content,
+  fieldName,
 }) {
   return (
-    <Link to={`editar?field=${content}`}>
-      <h2
-        className={`font-poppins ${fontColor} ${fontSize} ${padding} ${margin} ${width} drop-shadow text-center hover:text-blue-500 hover:underline underline-offset-2 `}
-      >
-        {toUpperCase ? title?.toUpperCase() : title}
-      </h2>
+    <Link to={`editar?field=${content}`} className="w-full">
+      <div className="w-full flex flex-col justify-center items-center gap-5">
+        <Field>{fieldName}</Field>
+        <h2
+          className={`font-poppins ${fontColor} ${fontSize} ${padding} ${margin} ${width} drop-shadow text-center hover:text-blue-500 underline underline-offset-2 `}
+        >
+          🔧 {toUpperCase ? title?.toUpperCase() : title}
+        </h2>
+      </div>
     </Link>
+  );
+}
+
+function Field({ children }) {
+  return (
+    <p className="font-poppins text-xl w-[60%] text-gray-100 text-center px-6 py-3 bg-blue-500">
+      {children}
+    </p>
   );
 }
 

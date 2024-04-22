@@ -5,6 +5,9 @@ function Button({
   margin,
   fontSize,
   path = -1,
+  bgColor = 'bg-blue-500',
+  textColor = 'text-gray-50',
+  padding = 'px-6 py-3',
 }) {
   //type === 'action' || 'back'
 
@@ -16,7 +19,7 @@ function Button({
 
   return (
     <button
-      className={`font-poppins ${fontSize} px-6 py-3 text-gray-50 bg-blue-500 rounded-md shadow-lg drop-shadow-sm ${margin}`}
+      className={`font-poppins ${fontSize} ${padding} ${textColor} ${bgColor} rounded-md shadow-lg drop-shadow-sm ${margin}`}
       onClick={handleAction}
     >
       {children}

@@ -8,6 +8,8 @@ import WorksPage from './components/WorksPage';
 import DashboardOverview from './components/DashboardOverview';
 import WorkDetails from './components/WorkDetails';
 import EditWork from './components/EditWork';
+import EditImg from './components/EditImg';
+import ImageUploader from './components/ImageUploader';
 
 function App() {
   const isMobile = window.innerWidth < 640;
@@ -25,8 +27,10 @@ function App() {
           <Route path="works" element={<WorksPage />} />
           <Route path="works/:id" element={<WorkDetails />}>
             <Route path="editar" element={<EditWork />} />
+            <Route path="editar-img" element={<EditImg />} />
           </Route>
         </Route>
+        <Route path="/f-uploader" element={<ImageUploader />} />
       </Routes>
     </BrowserRouter>
   );
