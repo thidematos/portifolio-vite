@@ -1,7 +1,15 @@
+import { useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
-function RouterModal({ path, children }) {
+function RouterModal({ path, isModalScrollable = false, children }) {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.body.style.height = '100svh';
+    document.body.style.overflow = 'hidden';
+
+    return () => (document.body.style = '');
+  }, []);
 
   return (
     <div
@@ -11,7 +19,11 @@ function RouterModal({ path, children }) {
       }}
     >
       <div
-        className={`modal relative bg-gray-100 z-[9999] centerDivAbsolute animateToMiddle rounded-xl w-[90%] md:w-[60%] lg:w-[40%] md:max-w-[600px] lg:max-w-[500px] 3xl:max-w-[560px] h-[75%] md:h-[65%] lg:h-[90%] 3xl:h-[80%] shadow-xl`}
+        className={`modal relative bg-gray-100 z-[9999] centerDivAbsolute animateToMiddle ${
+          isModalScrollable
+            ? 'w-[100%] fixed h-[90svh] overflow-y-scroll  rounded-xl overflow-x-hidden lg:w-[85%] lg:h-[90svh]'
+            : 'rounded-xl w-[90%] md:w-[60%] lg:w-[40%] md:max-w-[600px] lg:max-w-[500px] 3xl:max-w-[560px] h-[75%] md:h-[65%] lg:h-[90%] 3xl:h-[80%]'
+        }  shadow-xl`}
         onClick={(e) => e.stopPropagation()}
       >
         <Link to={path}>
