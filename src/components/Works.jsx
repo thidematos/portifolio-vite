@@ -18,9 +18,7 @@ function Works() {
         setIsLoading(true);
         setError('');
 
-        const res = await fetch(
-          'http://127.0.0.1:3000/api/v1/works/?sort=viewOrder'
-        );
+        const res = await fetch('/api/v1/works/?sort=viewOrder');
         const dataWorks = await res.json();
 
         setWorks(dataWorks.data.works);
