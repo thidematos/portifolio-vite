@@ -5,16 +5,27 @@ export default function usePatch(patchOptions) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const { resource, id, field, newValue, setter } = patchOptions;
+  const {
+    resource,
+    id,
+    field,
+    newValue,
+    setter,
+    isImage = false,
+  } = patchOptions;
+
+  const data = isImage
+    ? newValue
+    : {
+        [`${field}`]: newValue,
+      };
 
   async function handleSave() {
     try {
       setIsLoading(true);
       const res = await axios.patch(
         `http://127.0.0.1:3000/api/v1/${resource}/${id}`,
-        {
-          [`${field}`]: newValue,
-        },
+        data,
         {
           withCredentials: true,
         }
